@@ -74,10 +74,8 @@ jobs:
           REPO_OWNER: ${{ github.repository_owner }}
         run: |
           echo "📄 Writing README.md..."
-          cat > README.md << EOF
-# ${REPO_NAME}
-https://${REPO_OWNER}.github.io/${REPO_NAME}/demo_${REPO_NAME}.html
-EOF
+          printf '# %s\nhttps://%s.github.io/%s/demo_%s.html\n' \
+            "${REPO_NAME}" "${REPO_OWNER}" "${REPO_NAME}" "${REPO_NAME}" > README.md
           echo "   ✅ README.md"
 
       - name: Remove this workflow (one-time use)
